@@ -15,6 +15,7 @@ public class User {
     private int id;
     private String username;
     private String password;
+    private int status;
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Channel> channel;
     @OneToMany(cascade = CascadeType.ALL)
@@ -58,5 +59,13 @@ public class User {
 
     public void setPost(List<Post> post) {
         this.post = post;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }
