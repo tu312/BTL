@@ -20,5 +20,9 @@ public class ChannelController {
         return channelService.createChannel(channelDTO);
     }
 
-
+    //join a channel
+    @RequestMapping(value="user/{userId}/joinChannel/{channelId}", method = RequestMethod.POST)
+    public void joinChannel(@PathVariable("userId") int userId, @PathVariable("channelId") int channelId){
+        channelService.joinChannel(userId, channelId);
+    }
 }

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uet.DTO.ChannelDTO;
 import uet.model.Channel;
+import uet.model.User;
 import uet.repository.ChannelRepository;
 import uet.repository.UserRepository;
 
@@ -26,4 +27,10 @@ public class ChannelService {
         }
     }
 
+    public void joinChannel(int userId, int channelId){
+        User user = userRepository.findOne(userId);
+        Channel channel = channelRepository.findOne(channelId);
+        user.getChannel().add(channel);
+        userRepository.save(user);
+    }
 }
