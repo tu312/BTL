@@ -2,6 +2,7 @@ package uet.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import uet.DTO.ChannelDTO;
 import uet.model.Channel;
 import uet.service.ChannelService;
 
@@ -15,8 +16,8 @@ public class ChannelController {
 
     //create a channel
     @RequestMapping(value="/createChannel", method = RequestMethod.POST)
-    public Channel createChannel(@RequestBody Channel channel){
-        return channelService.createChannel(channel);
+    public Channel createChannel(@RequestBody ChannelDTO channelDTO){
+        return channelService.createChannel(channelDTO);
     }
 
 
