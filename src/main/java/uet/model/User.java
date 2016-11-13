@@ -16,7 +16,7 @@ public class User {
     private String userName;
     private String password;
     private int status;
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Channel> channel;
     @OneToMany(cascade = CascadeType.ALL)
     private List<Post> post;

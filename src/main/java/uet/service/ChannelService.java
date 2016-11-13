@@ -8,6 +8,8 @@ import uet.model.User;
 import uet.repository.ChannelRepository;
 import uet.repository.UserRepository;
 
+import java.util.List;
+
 /**
  * Created by Tu on 11-Nov-16.
  */
@@ -17,20 +19,40 @@ public class ChannelService {
     ChannelRepository channelRepository;
     @Autowired
     UserRepository userRepository;
-    public Channel createChannel(ChannelDTO channelDTO){
-        Channel channel = channelRepository.findByChannelName(channelDTO.getChannelName());
-        if (channel == null){
-            channel.setChannelName(channelDTO.getChannelName());
-            return channelRepository.save(channel);
+
+    //create channel
+    public Channel createChannel(int userId, ChannelDTO channelDTO){
+        User user = userRepository.findOne(userId);
+        if ( user.getStatus() == 1 ){
+            Channel channel = channelRepository.findByChannelName(channelDTO.getChannelName());
+            if ( channel == null && channelDTO.getChannelName() != null ){
+                Channel channel1 = new Channel();
+                channel1.setChannelName(channelDTO.getChannelName());
+                user.getChannel().add(channel1);
+                return channelRepository.save(channel1);
+            } else {
+                throw new NullPointerException("Channel existed.");
+            }
         } else {
-            throw new NullPointerException("Channel existed.");
+            throw new NullPointerException("Log in first!");
         }
     }
 
+    //join channel
     public void joinChannel(int userId, int channelId){
         User user = userRepository.findOne(userId);
-        Channel channel = channelRepository.findOne(channelId);
-        user.getChannel().add(channel);
-        userRepository.save(user);
+        if ( user.getStatus() == 1 ) {
+            Channel channel = channelRepository.findOne(channelId);
+            user.getChannel().add(channel);
+            userRepository.save(user);
+        } else {
+            throw new NullPointerException("Log in first!");
+        }
+    }
+
+    //show all channels
+    public List<Channel> showChannel(){
+        List<Channel> allChannel = (List<Channel>) channelRepository.findAll();
+        return allChannel;
     }
 }
