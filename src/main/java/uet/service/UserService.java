@@ -9,6 +9,7 @@ import uet.repository.ChannelRepository;
 import uet.repository.UserRepository;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Tu on 11-Nov-16.
@@ -53,9 +54,8 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public List<User> showSubscriber(int channelId){
-        Channel channel = channelRepository.findOne(channelId);
-        List<User> allSubscriber = (List<User>) userRepository.findByChannel(channelId);
-        return allSubscriber;
+    public Set<User> showSubscriber(int channelId){
+        Channel channel = channelRepository.findById(channelId);
+        return channel.getUser();
     }
 }

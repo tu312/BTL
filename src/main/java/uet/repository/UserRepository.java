@@ -13,5 +13,5 @@ import java.util.List;
 @Repository
 public interface UserRepository extends CrudRepository<User, Integer> {
     User findByUserName(String userName);
-    List<User> findByChannel(Integer channelId);
+    List<User> findAllByChannel(Channel channel);
 }

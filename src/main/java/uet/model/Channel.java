@@ -2,6 +2,7 @@ package uet.model;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Tu on 10-Nov-16.
@@ -15,7 +16,7 @@ public class Channel {
     private int id;
     private String channelName;
     @ManyToMany(mappedBy = "channel")
-    private List<User> user;
+    private Set<User> user;
     @OneToMany(cascade = CascadeType.ALL)
     private List<Post> post;
 
@@ -43,11 +44,11 @@ public class Channel {
         this.post = post;
     }
 
-    public List<User> getUser() {
+    public Set<User> getUser() {
         return user;
     }
 
-    public void setUser(List<User> user) {
+    public void setUser(Set<User> user) {
         this.user = user;
     }
 }

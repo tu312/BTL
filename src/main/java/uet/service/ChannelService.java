@@ -55,4 +55,6 @@ public class ChannelService {
         List<Channel> allChannel = (List<Channel>) channelRepository.findAll();
         return allChannel;
     }
+
+
 }
