@@ -15,8 +15,8 @@ public class Channel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String channelName;
-    @ManyToMany(mappedBy = "channel")
-    private Set<User> user;
+//    @ManyToMany(mappedBy = "channel")
+//    private List<User> user;
     @OneToMany(cascade = CascadeType.ALL)
     private List<Post> post;
 
@@ -44,11 +44,11 @@ public class Channel {
         this.post = post;
     }
 
-    public Set<User> getUser() {
-        return user;
-    }
-
-    public void setUser(Set<User> user) {
-        this.user = user;
-    }
+//    public List<User> getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(List<User> user) {
+//        this.user = user;
+//    }
 }

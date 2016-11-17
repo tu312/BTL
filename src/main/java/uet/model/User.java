@@ -18,7 +18,7 @@ public class User {
     private String password;
     private int status;
     @ManyToMany(cascade = CascadeType.ALL)
-    private Set<Channel> channel;
+    private List<Channel> channel;
     @OneToMany(cascade = CascadeType.ALL)
     private List<Post> post;
 
@@ -46,11 +46,11 @@ public class User {
         this.password = password;
     }
 
-    public Set<Channel> getChannel() {
+    public List<Channel> getChannel() {
         return channel;
     }
 
-    public void setChannel(Set<Channel> channel) {
+    public void setChannel(List<Channel> channel) {
         this.channel = channel;
     }
 

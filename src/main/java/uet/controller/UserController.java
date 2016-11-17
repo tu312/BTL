@@ -37,7 +37,7 @@ public class UserController {
 
     //show list subscriber of a channel
     @RequestMapping(value="/channel/{channelId}/subscriber", method = RequestMethod.GET)
-    public Set<User> showSubscriber(@PathVariable("channelId") int channelId){
+    public List<User> showSubscriber(@PathVariable("channelId") int channelId){
         return userService.showSubscriber(channelId);
     }
 }

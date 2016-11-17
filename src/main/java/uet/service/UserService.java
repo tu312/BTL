@@ -21,6 +21,7 @@ public class UserService {
     @Autowired
     ChannelRepository channelRepository;
 
+    //sign up
     public User signup(UserDTO userDTO){
         User user1  = userRepository.findByUserName(userDTO.getUserName());
         if (user1 == null){
@@ -38,6 +39,7 @@ public class UserService {
         }
     }
 
+    //log in
     public User login(UserDTO userDTO){
         User user = userRepository.findByUserName(userDTO.getUserName());
         if (userDTO.getPassword().equals(user.getPassword())){
@@ -48,14 +50,17 @@ public class UserService {
         }
     }
 
+    //log out
     public User logout(UserDTO userDTO){
         User user = userRepository.findByUserName(userDTO.getUserName());
         user.setStatus(0);
         return userRepository.save(user);
     }
 
-    public Set<User> showSubscriber(int channelId){
+    //show list subscribers of channel
+    public List<User> showSubscriber(int channelId){
         Channel channel = channelRepository.findById(channelId);
-        return channel.getUser();
+        List<User> allSubscriber = (List<User>) userRepository.findAllByChannel(channel);
+        return allSubscriber;
     }
 }
