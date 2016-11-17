@@ -19,8 +19,6 @@ public class User {
     private int status;
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Channel> channel;
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Post> post;
 
     public int getId() {
         return id;
@@ -52,14 +50,6 @@ public class User {
 
     public void setChannel(List<Channel> channel) {
         this.channel = channel;
-    }
-
-    public List<Post> getPost() {
-        return post;
-    }
-
-    public void setPost(List<Post> post) {
-        this.post = post;
     }
 
     public int getStatus() {

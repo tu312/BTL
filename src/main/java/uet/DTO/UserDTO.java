@@ -12,7 +12,6 @@ public class UserDTO {
     private String password;
     private int status;
     private Channel channel;
-    private Post post;
 
     public int getId() {
         return id;
@@ -54,11 +53,4 @@ public class UserDTO {
         this.channel = channel;
     }
 
-    public Post getPost() {
-        return post;
-    }
-
-    public void setPost(Post post) {
-        this.post = post;
-    }
 }
