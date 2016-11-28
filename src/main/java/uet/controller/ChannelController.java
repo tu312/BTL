@@ -35,5 +35,10 @@ public class ChannelController {
         return channelService.showChannel();
     }
 
+    //show a channel
+    @RequestMapping(value = "channel/{channelId}", method = RequestMethod.GET)
+    public Channel showPost(@PathVariable("channelId") int channelId){
+        return channelService.showChannel(channelId);
+    }
 
 }

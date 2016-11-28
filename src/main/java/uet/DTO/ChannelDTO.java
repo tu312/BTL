@@ -8,6 +8,7 @@ import uet.model.Post;
 public class ChannelDTO {
     private int id;
     private String channelName;
+    private String channelDes;
     private Post post;
 
     public int getId() {
@@ -21,9 +22,16 @@ public class ChannelDTO {
     public String getChannelName() {
         return channelName;
     }
+    public String getChannelDes() {
+        return channelDes;
+    }
 
     public void setChannelName(String channelName) {
         this.channelName = channelName;
+    }
+
+    public void setChannelDes(String channelDes) {
+        this.channelDes = channelDes;
     }
 
     public Post getPost() {

@@ -57,5 +57,11 @@ public class ChannelService {
         return allChannel;
     }
 
+    //show a channel
+    public Channel showChannel(int channelId){
+        Channel channel = channelRepository.findOne(channelId);
+        return channel;
+    }
+
 
 }
