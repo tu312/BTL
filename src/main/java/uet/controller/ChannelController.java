@@ -31,7 +31,7 @@ public class ChannelController {
 
     //show all channels
     @RequestMapping(value="/channel", method = RequestMethod.GET)
-    public List<Channel> showChannel() {
+    public List<String> showChannel() {
         return channelService.showChannel();
     }
 

@@ -62,7 +62,7 @@ public class UserService {
     public List<String> showSubscriber(int channelId){
         Channel channel = channelRepository.findById(channelId);
         List<User> allSubscriber = (List<User>) userRepository.findAllByChannel(channel);
-         ArrayList<String> allSubscriberName = new ArrayList<String>();
+        ArrayList<String> allSubscriberName = new ArrayList<String>();
         for ( User user : allSubscriber ){
             String name = user.getUserName();
             allSubscriberName.add(name);

@@ -8,6 +8,7 @@ import uet.model.User;
 import uet.repository.ChannelRepository;
 import uet.repository.UserRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -52,9 +53,14 @@ public class ChannelService {
     }
 
     //show all channels
-    public List<Channel> showChannel(){
+    public List<String> showChannel(){
         List<Channel> allChannel = (List<Channel>) channelRepository.findAll();
-        return allChannel;
+        ArrayList<String> listChannel = new ArrayList<String>();
+        for (Channel channel : allChannel ){
+            String name = channel.getChannelName();
+            listChannel.add(name);
+        }
+        return listChannel;
     }
 
 
