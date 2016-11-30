@@ -8,6 +8,7 @@ import uet.model.User;
 import uet.repository.ChannelRepository;
 import uet.repository.UserRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -58,9 +59,14 @@ public class UserService {
     }
 
     //show list subscribers of channel
-    public List<User> showSubscriber(int channelId){
+    public List<String> showSubscriber(int channelId){
         Channel channel = channelRepository.findById(channelId);
         List<User> allSubscriber = (List<User>) userRepository.findAllByChannel(channel);
-        return allSubscriber;
+        ArrayList<String> allSubscriberName = new ArrayList<String>();
+        for ( User user : allSubscriber ){
+            String name = user.getUserName();
+            allSubscriberName.add(name);
+        }
+        return allSubscriberName;
     }
 }
