@@ -6,8 +6,8 @@ import uet.DTO.UserDTO;
 import uet.model.User;
 import uet.service.UserService;
 
+import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Tu on 11-Nov-16.
@@ -39,5 +39,11 @@ public class UserController {
     @RequestMapping(value="/channel/{channelId}/subscriber", method = RequestMethod.GET)
     public List<String> showSubscriber(@PathVariable("channelId") int channelId){
         return userService.showSubscriber(channelId);
+    }
+
+    //show subcribed channel of user
+    @RequestMapping(value="/user/{userId}/subscribed", method = RequestMethod.GET)
+    public List<HashMap<String, String>> showSubscribedChannel(@PathVariable("userId") int userId){
+        return userService.showSubscribedChannel(userId);
     }
 }

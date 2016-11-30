@@ -9,8 +9,8 @@ import uet.repository.ChannelRepository;
 import uet.repository.UserRepository;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Tu on 11-Nov-16.
@@ -53,12 +53,19 @@ public class ChannelService {
     }
 
     //show all channels
-    public List<String> showChannel(){
+    public List<HashMap<String, String>> showChannel(){
         List<Channel> allChannel = (List<Channel>) channelRepository.findAll();
-        ArrayList<String> listChannel = new ArrayList<String>();
+        List<HashMap<String, String>> listChannel = new ArrayList<>();
+
         for (Channel channel : allChannel ){
+            HashMap<String, String> lChannel = new HashMap<>();
             String name = channel.getChannelName();
-            listChannel.add(name);
+            String des = channel.getChannelDes();
+            String id = String.valueOf(channel.getId());
+            lChannel.put("channelName", name);
+            lChannel.put("channelDes", des);
+            lChannel.put("id", id);
+            listChannel.add(lChannel);
         }
         return listChannel;
     }

@@ -6,6 +6,7 @@ import uet.DTO.ChannelDTO;
 import uet.model.Channel;
 import uet.service.ChannelService;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
@@ -31,8 +32,8 @@ public class ChannelController {
 
     //show all channels
     @RequestMapping(value="/channel", method = RequestMethod.GET)
-    public List<String> showChannel() {
-        return channelService.showChannel();
+    public List<HashMap<String, String>> showChannel() {
+        return (List<HashMap<String, String>>) channelService.showChannel();
     }
 
     //show a channel

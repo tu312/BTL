@@ -9,6 +9,7 @@ import uet.repository.ChannelRepository;
 import uet.repository.UserRepository;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
@@ -68,5 +69,40 @@ public class UserService {
             allSubscriberName.add(name);
         }
         return allSubscriberName;
+    }
+
+
+//    public List<HashMap<String, String>> showChannel(){
+//        List<Channel> allChannel = (List<Channel>) channelRepository.findAll();
+//        List<HashMap<String, String>> listChannel = new ArrayList<>();
+//
+//        for (Channel channel : allChannel ){
+//            HashMap<String, String> lChannel = new HashMap<>();
+//            String name = channel.getChannelName();
+//            String des = channel.getChannelDes();
+//            String id = String.valueOf(channel.getId());
+//            lChannel.put("channelName", name);
+//            lChannel.put("channelDes", des);
+//            lChannel.put("id", id);
+//            listChannel.add(lChannel);
+//        }
+//        return listChannel;
+//    }
+
+    //show subcribed channel of user
+    public List<HashMap<String, String>> showSubscribedChannel(int userId){
+        User user = userRepository.findOne(userId);
+        List<HashMap<String, String>> listChannel = new ArrayList<>();
+        for (Channel channel: user.getChannel()){
+            HashMap<String, String> lChannel = new HashMap<>();
+            String name = channel.getChannelName();
+            String des = channel.getChannelDes();
+            String id = String.valueOf(channel.getId());
+            lChannel.put("channelName", name);
+            lChannel.put("channelDes", des);
+            lChannel.put("id", id);
+            listChannel.add(lChannel);
+        }
+        return listChannel;
     }
 }
