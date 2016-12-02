@@ -40,12 +40,24 @@ public class ChannelService {
         }
     }
 
-    //join channel
+    //join a channel
     public void joinChannel(int userId, int channelId){
         User user = userRepository.findOne(userId);
         if ( user.getStatus() == 1 ) {
             Channel channel = channelRepository.findOne(channelId);
             user.getChannel().add(channel);
+            userRepository.save(user);
+        } else {
+            throw new NullPointerException("Log in first!");
+        }
+    }
+
+    //unsubscribe a channel
+    public void unsubscribeChannel(int userId, int channelId){
+        User user = userRepository.findOne(userId);
+        if ( user.getStatus() == 1 ) {
+            Channel channel = channelRepository.findOne(channelId);
+            user.getChannel().remove(channel);
             userRepository.save(user);
         } else {
             throw new NullPointerException("Log in first!");

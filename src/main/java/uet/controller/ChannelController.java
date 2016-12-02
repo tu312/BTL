@@ -30,6 +30,12 @@ public class ChannelController {
         channelService.joinChannel(userId, channelId);
     }
 
+    //unsubscribe a channel
+    @RequestMapping(value="user/{userId}/unsubscribeChannel/{channelId}", method = RequestMethod.POST)
+    public void unsubscribeChannel(@PathVariable("userId") int userId, @PathVariable("channelId") int channelId){
+        channelService.unsubscribeChannel(userId, channelId);
+    }
+
     //show all channels
     @RequestMapping(value="/channel", method = RequestMethod.GET)
     public List<HashMap<String, String>> showChannel() {
