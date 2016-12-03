@@ -5,8 +5,8 @@ package uet.DTO;
  */
 public class PostDTO {
     private int id;
-    private String title;
     private String content;
+    private String userName;
 
     public int getId() {
         return id;
@@ -16,13 +16,6 @@ public class PostDTO {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
 
     public String getContent() {
         return content;
@@ -30,5 +23,13 @@ public class PostDTO {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getUserName() {
+        return userName;
     }
 }

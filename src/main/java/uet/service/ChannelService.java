@@ -30,6 +30,7 @@ public class ChannelService {
             if ( channel == null && channelDTO.getChannelName() != null ){
                 Channel channel1 = new Channel();
                 channel1.setChannelName(channelDTO.getChannelName());
+                channel1.setChannelDes(channelDTO.getChannelDes());
                 user.getChannel().add(channel1);
                 return channelRepository.save(channel1);
             } else {
@@ -40,29 +41,27 @@ public class ChannelService {
         }
     }
 
-    //join a channel
+    //join channel
     public void joinChannel(int userId, int channelId){
         User user = userRepository.findOne(userId);
+        int count = 0;
         if ( user.getStatus() == 1 ) {
-            Channel channel = channelRepository.findOne(channelId);
-            user.getChannel().add(channel);
-            userRepository.save(user);
-        } else {
+            for (Channel sChannel : user.getChannel()) {
+                if (sChannel.getId() == channelId) {
+                    count = 1;
+                    break;
+                }
+            }
+            if(count == 0) {
+                Channel channel = channelRepository.findOne(channelId);
+                user.getChannel().add(channel);
+                userRepository.save(user);
+            }
+        }else {
             throw new NullPointerException("Log in first!");
         }
     }
 
-    //unsubscribe a channel
-    public void unsubscribeChannel(int userId, int channelId){
-        User user = userRepository.findOne(userId);
-        if ( user.getStatus() == 1 ) {
-            Channel channel = channelRepository.findOne(channelId);
-            user.getChannel().remove(channel);
-            userRepository.save(user);
-        } else {
-            throw new NullPointerException("Log in first!");
-        }
-    }
 
     //show all channels
     public List<HashMap<String, String>> showChannel(){
@@ -87,6 +86,7 @@ public class ChannelService {
         Channel channel = channelRepository.findOne(channelId);
         return channel;
     }
+
 
 
 }

@@ -30,8 +30,8 @@ public class PostService {
         Channel channel = channelRepository.findOne(channelId);
         if (user.getStatus() == 1){
             Post post = new Post();
-            post.setTitle(postDTO.getTitle());
             post.setContent(postDTO.getContent());
+            post.setUserName(user.getUserName());
             postRepository.save(post);
             channel.getPost().add(post);
             channelRepository.save(channel);

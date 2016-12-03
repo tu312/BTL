@@ -25,9 +25,7 @@ public class PostController {
     @RequestMapping(value = "user/{userId}/channel/{channelId}/post", method = RequestMethod.POST)
     public void createPost(@PathVariable("userId") int userId, @PathVariable("channelId") int channelId, @RequestBody PostDTO postDTO)  throws Exception {
         Post post = postService.createPost(userId, channelId, postDTO);
-        simpMessagingTemplate.convertAndSend("/topic/listen", post);
-
-
+        simpMessagingTemplate.convertAndSend("/channel/"+channelId, post);
     }
 
     //show list post of a channel
