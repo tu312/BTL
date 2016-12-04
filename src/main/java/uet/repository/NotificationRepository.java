@@ -10,5 +10,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface NotificationRepository extends CrudRepository<Notification, Integer>{
     Notification findByUserId(Integer userId);
-    Notification findByUserIdAndChannelId();
 }

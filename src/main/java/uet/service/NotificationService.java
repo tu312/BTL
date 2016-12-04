@@ -3,6 +3,7 @@ package uet.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uet.model.Notification;
+import uet.repository.NotificationJpaRepository;
 import uet.repository.NotificationRepository;
 
 import java.util.ArrayList;
@@ -16,7 +17,10 @@ import java.util.List;
 public class NotificationService {
     @Autowired
     private NotificationRepository notificationRepository;
+    @Autowired
+    private NotificationJpaRepository notificationJpaRepository;
     public List<HashMap<String, String>> getNotification(int userId) {
+
         List<HashMap<String, String>> listNotification = new ArrayList<>();
         List<Notification> listNoti = (List<Notification>)  notificationRepository.findAll();
         for (Notification notification : listNoti ){
@@ -38,13 +42,17 @@ public class NotificationService {
         return listNotification;
     }
 
+
+
     public void removeNotification(int userId, int channelId) {
 //        List<HashMap<String, String>> listNotification = new ArrayList<>();
-        List<Notification> listNoti = (List<Notification>)  notificationRepository.findAll();
-        for (Notification notification : listNoti ){
-            if(notification.getUserId() == userId && notification.getChannelId() == channelId) {
-                notificationRepository.delete(notification);
-            }
-        }
+        Notification notification = notificationJpaRepository.findByUserIdAndChannelId(userId, channelId);
+        notificationRepository.delete(notification);
+//        List<Notification> listNoti = (List<Notification>)  notificationRepository.findAll();
+//        for (Notification notification : listNoti ){
+//            if(notification.getUserId() == userId && notification.getChannelId() == channelId) {
+//                notificationRepository.delete(notification);
+//            }
+//        }
     }
 }

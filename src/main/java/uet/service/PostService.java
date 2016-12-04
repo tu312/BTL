@@ -8,6 +8,7 @@ import uet.model.Post;
 import uet.model.User;
 import uet.model.Notification;
 import uet.repository.NotificationRepository;
+import uet.repository.NotificationJpaRepository;
 import uet.repository.ChannelRepository;
 import uet.repository.PostRepository;
 import uet.repository.UserRepository;
@@ -28,6 +29,8 @@ public class PostService {
     ChannelRepository channelRepository;
     @Autowired
     NotificationRepository notificationRepository;
+    @Autowired
+    NotificationJpaRepository notificationJpaRepository;
 
     //create post
     public Post createPost(int userId, int channelId, PostDTO postDTO){
@@ -43,19 +46,31 @@ public class PostService {
             channel.getPost().add(post);
             channelRepository.save(channel);
             List<User> allSubscriber = (List<User>) userRepository.findAllByChannel(channel);
-            List<Notification> listNoti = (List<Notification>)  notificationRepository.findAll();
-            List<Integer> noNoti = new ArrayList<>();
-//            for(Notification cNotification : listNoti ){
                 for ( User sUser : allSubscriber ){
                     if(userId != sUser.getId()) {
-                        Notification notification = new Notification();
+                        Notification listNoti = notificationJpaRepository.findByUserIdAndChannelId(sUser.getId(), channelId);
+                        if(listNoti == null){
+                            Notification notification = new Notification();
 //
-                        notification.setUserId(sUser.getId());
-                        notification.setChannelId(channelId);
-                        notification.setChannelName(channel.getChannelName());
-                        notification.setPostContent(postDTO.getContent());
-                        notification.setUserName(user.getUserName());
-                        notificationRepository.save(notification);
+                            notification.setUserId(sUser.getId());
+                            notification.setChannelId(channelId);
+                            notification.setChannelName(channel.getChannelName());
+                            notification.setPostContent(postDTO.getContent());
+                            notification.setUserName(user.getUserName());
+                            notificationRepository.save(notification);
+                        }
+                        else{
+                            listNoti.setUserName(user.getUserName());
+                            notificationRepository.save(listNoti);
+                        }
+//                        Notification notification = new Notification();
+////
+//                        notification.setUserId(sUser.getId());
+//                        notification.setChannelId(channelId);
+//                        notification.setChannelName(channel.getChannelName());
+//                        notification.setPostContent(postDTO.getContent());
+//                        notification.setUserName(user.getUserName());
+//                        notificationRepository.save(notification);
 //                        if (cNotification.getChannelId() == channelId && cNotification.getUserId() == sUser.getId()) {
 //                            cNotification.setUserName(user.getUserName());
 //                            notificationRepository.save(cNotification);
@@ -110,7 +125,6 @@ public class PostService {
 ////                    }
 //                }
 //            }
-
 
 
             return post;
