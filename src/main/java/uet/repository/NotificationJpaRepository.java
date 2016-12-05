@@ -6,7 +6,7 @@ import uet.model.Notification;
 import java.util.List;
 
 /**
- * Created by nhkha on 12/4/2016.
+ * Created by nhkha on 11/25/2016.
  */
 @org.springframework.stereotype.Repository
     public interface NotificationJpaRepository extends Repository<Notification, Integer>{

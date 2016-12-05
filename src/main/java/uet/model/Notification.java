@@ -3,7 +3,7 @@ package uet.model;
 import javax.persistence.*;
 
 /**
- * Created by nhkha on 12/3/2016.
+ * Created by nhkha on 11/25/2016.
  */
 @Entity
 @Table(name="Notification")

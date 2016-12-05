@@ -10,7 +10,7 @@ import uet.model.Notification;
 import uet.service.NotificationService;
 
 /**
- * Created by nhkha on 12/3/2016.
+ * Created by nhkha on 11/25/2016.
  */
 @RestController
 public class NotificationController {

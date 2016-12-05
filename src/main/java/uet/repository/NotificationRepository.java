@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 /**
- * Created by nhkha on 12/3/2016.
+ * Created by nhkha on 11/25/2016.
  */
 @Repository
 public interface NotificationRepository extends CrudRepository<Notification, Integer>{
